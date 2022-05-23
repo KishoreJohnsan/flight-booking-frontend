@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { FlightSchedule } from 'src/app/interfaces/adminInterface';
 import { Login, Register, Token } from 'src/app/interfaces/commonInterface';
 import { environment } from 'src/environments/environment';
 
@@ -12,6 +13,10 @@ export class LoginService {
   private baseUrl: string = environment.apiServiceUrl.concat('/service');
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  getToken(){
+    return localStorage.getItem('data');
+  }
 
   authenticate(login: Login) {
     const headers = { 'content-type': 'application/json' }
@@ -56,6 +61,14 @@ export class LoginService {
           console.error('There was an error!', error);
         }
       }) */
+  }
+
+  getScheduleByStation(schedule: FlightSchedule) {
+    let url: string = this.baseUrl.concat('/scheduleByStn/')
+      .concat(schedule.source)
+      .concat('/')
+      .concat(schedule.destination)
+     return this.http.get<FlightSchedule[]>(url)
   }
 
 }

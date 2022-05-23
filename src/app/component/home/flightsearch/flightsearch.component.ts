@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { FlightSchedule } from 'src/app/interfaces/adminInterface';
 import { FlightscheduleService } from 'src/app/service/admin/flightschedule.service';
 import { MessageService } from 'primeng/api';
+import { LoginService } from 'src/app/service/common/login.service';
 
 @Component({
   selector: 'app-flightsearch',
@@ -17,7 +18,7 @@ export class FlightsearchComponent implements OnInit {
   flightSearchForm : FormGroup;
 
   constructor(private router: Router, private builder:FormBuilder, private scheduleService:FlightscheduleService,
-    private messageService: MessageService) {
+    private messageService: MessageService, private loginService : LoginService) {
     this.flightSearchForm = this.builder.group({
       source: ['', Validators.required],
       destination: ['', Validators.required],        
@@ -51,12 +52,12 @@ export class FlightsearchComponent implements OnInit {
       this.schedules = schedules
     })   */  
 
-    this.scheduleService.getScheduleByStation(this.flightSearchForm.value).subscribe({
+    this.loginService.getScheduleByStation(this.flightSearchForm.value).subscribe({
       next: data => {
         this.schedules = data
       },
       error: error => {        
-        this.showToast('error', error.error, 'Flights not available for given stations')
+        this.showToast('error', error.error.error, 'Flights not available for given stations')
       }
     })
 

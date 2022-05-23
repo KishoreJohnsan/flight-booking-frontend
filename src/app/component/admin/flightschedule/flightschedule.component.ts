@@ -21,7 +21,7 @@ export class FlightscheduleComponent implements OnInit {
   schedules: FlightSchedule[] = [];
   ref!: DynamicDialogRef;
 
-  constructor(private router: Router, private scheduleService: FlightscheduleService, public dialogService: DialogService, private messageService : MessageService) {
+  constructor(private router: Router, private scheduleService: FlightscheduleService, public dialogService: DialogService, private messageService: MessageService) {
   }
 
   ngOnInit(): void {
@@ -33,13 +33,16 @@ export class FlightscheduleComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('ADMIN'))
+        this.router.navigate(['/']);
     }
 
     this.getScheduleData()
-    
+
   }
 
-  getScheduleData(){
+  getScheduleData() {
     /* this.scheduleService.getAllSchedules().subscribe((schedules) => {      
       this.schedules = schedules
     }); */
@@ -47,8 +50,8 @@ export class FlightscheduleComponent implements OnInit {
       next: data => {
         this.schedules = data
       },
-      error: error => {        
-        this.showToast('error', error.error, 'No Flight Schedule data available')
+      error: error => {
+        this.showToast('error', error.error.error, 'No Flight Schedule data available')
       }
     })
   }
@@ -63,7 +66,7 @@ export class FlightscheduleComponent implements OnInit {
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
-    });  
+    });
 
   }
 
@@ -81,9 +84,9 @@ export class FlightscheduleComponent implements OnInit {
 
     this.ref.onClose.subscribe((schedule: FlightSchedule) => {
       if (schedule) {
-        
-        schedule.date = dayjs(schedule.date).format("YYYY-MM-DD")        
-        schedule.time = dayjs(schedule.time).format("HH:mm")  
+
+        schedule.date = dayjs(schedule.date).format("YYYY-MM-DD")
+        schedule.time = dayjs(schedule.time).format("HH:mm")
         //console.log(schedule.time)        
         this.scheduleService.saveEditedSchedule(schedule);
         this.getScheduleData()
@@ -105,7 +108,7 @@ export class FlightscheduleComponent implements OnInit {
     }
   }
 
-  showToast(type:string, msg:string, detail:string) {
+  showToast(type: string, msg: string, detail: string) {
     this.messageService.add({ severity: type, summary: msg, detail: detail });
   }
 

@@ -239,9 +239,7 @@
           >
             <small
               *ngIf="
-              scheduleForm.get('airline')?.touched &&
-                (scheduleForm.get('airline')?.invalid||
-                  scheduleForm.get('airline')?.dirty)
+              scheduleForm.get('airline')?.invalid
               "
               [ngStyle]="{ color: 'var(--red-600)' }"
               >Please select an airline</small

@@ -18,7 +18,7 @@ export class ScheduleEditComponent implements OnInit {
   scheduleEditForm: FormGroup;
   airlines: Airline[] = [];
 
-  constructor(private scheduleService: FlightscheduleService, public ref: DynamicDialogRef, public config: DynamicDialogConfig, private builder: FormBuilder, private airlineService : AirlineService) {
+  constructor(private scheduleService: FlightscheduleService, public ref: DynamicDialogRef, public config: DynamicDialogConfig, private builder: FormBuilder, private airlineService: AirlineService) {
     this.scheduleId = this.config.data.id
 
     this.scheduleEditForm = this.builder.group({
@@ -29,7 +29,7 @@ export class ScheduleEditComponent implements OnInit {
       date: ['', Validators.required],
       time: ['', Validators.required],
       flightNumber: ['', Validators.required],
-      flightType: ['',Validators.required],
+      flightType: ['', Validators.required],
       fare: ['', Validators.required]
     });
   }
@@ -37,7 +37,7 @@ export class ScheduleEditComponent implements OnInit {
   ngOnInit(): void {
 
     this.scheduleService.getScheduleById(this.scheduleId).subscribe((schedule) => {
-      //this.schedule = schedule
+      //console.log(schedule)
       this.scheduleEditForm.patchValue({
         scheduleId: schedule.scheduleId,
         airline: schedule.airline,
@@ -51,7 +51,7 @@ export class ScheduleEditComponent implements OnInit {
       })
     })
 
-    this.airlineService.getAllAirlines().subscribe((airlines) => {      
+    this.airlineService.getAllAirlines().subscribe((airlines) => {
       this.airlines = airlines.filter(airline => airline.isActive === 'true')
     });
 

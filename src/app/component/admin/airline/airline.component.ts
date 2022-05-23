@@ -32,6 +32,9 @@ export class AirlineComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('ADMIN'))
+        this.router.navigate(['/']);
     }
 
     this.getAirlineData()
@@ -47,7 +50,7 @@ export class AirlineComponent implements OnInit {
         this.airlines = data
       },
       error: error => {
-        this.showToast('error', error.error, 'No airlines data available')
+        this.showToast('error', error.error.error, 'No airlines data available')
       }
     })
   }
@@ -89,7 +92,7 @@ export class AirlineComponent implements OnInit {
     }
   }
 
-  showToast(type:string, msg:string, detail:string) {
+  showToast(type: string, msg: string, detail: string) {
     this.messageService.add({ severity: type, summary: msg, detail: detail });
   }
 }

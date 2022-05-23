@@ -33,6 +33,9 @@ export class TickethistoryComponent implements OnInit {
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
 
+      if (!data.role.includes('USER'))
+        this.router.navigate(['/']);
+
       this.user = data.user
     }
 
@@ -48,8 +51,8 @@ export class TickethistoryComponent implements OnInit {
       next: data => {
         this.bookings = data
       },
-      error: error => {        
-        this.showToast('error', error.error, `No Booking details found for ${this.user}`)
+      error: error => {
+        this.showToast('error', error.error.error, `No Booking details found for ${this.user}`)
       }
     })
 
@@ -92,7 +95,7 @@ export class TickethistoryComponent implements OnInit {
     }
   }
 
-  showToast(type:string, msg:string, detail:string) {
+  showToast(type: string, msg: string, detail: string) {
     this.messageService.add({ severity: type, summary: msg, detail: detail });
   }
 }

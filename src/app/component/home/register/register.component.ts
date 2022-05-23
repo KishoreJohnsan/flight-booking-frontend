@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login'])        
       },
       error: error => {
-        this.showToast('error', error.error, 'Please check and try again')
+        this.showToast('error', error.error.error, 'Please check and try again')
       }
     })
   }

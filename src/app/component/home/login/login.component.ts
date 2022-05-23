@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
 
       },
       error: error => {
-        this.showToast('error', 'UserName/Password Incorrect', 'Please check and try again')
+        console.log(error)
+        if(error.status === 401)
+          this.showToast('error', 'UserName/Password Incorrect', 'Please check and try again')
+        if(error.status === 503)
+          this.showToast('error', 'Internal Server Error', 'Please try again later')
       }
     })
   }

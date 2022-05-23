@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   apiServiceUrl:'http://localhost:3000/api/v1',
-  apiBaseUrl:'http://localhost:3000/api/v1/flight'
+  apiBaseUrl:'http://localhost:3000/api/v1/flight',
+  apiAdminUrl:'http://localhost:3000/api/v1/service/admin',
+  apiUserUrl:'http://localhost:3000/api/v1/service/user',
 };
 
 /*

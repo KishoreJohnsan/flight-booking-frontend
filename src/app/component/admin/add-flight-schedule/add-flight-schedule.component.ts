@@ -20,16 +20,16 @@ export class AddFlightScheduleComponent implements OnInit {
   scheduleForm: FormGroup;
   airlines: Airline[] = [];
 
-  constructor(private builder: FormBuilder, private scheduleService: FlightscheduleService, private airlineService: AirlineService, private router:Router, private messageService : MessageService) {
+  constructor(private builder: FormBuilder, private scheduleService: FlightscheduleService, private airlineService: AirlineService, private router: Router, private messageService: MessageService) {
     this.scheduleForm = this.builder.group({
       flightNumber: ['', Validators.required],
       airline: ['', Validators.required],
-      source: ['',Validators.required],
+      source: ['', Validators.required],
       destination: ['', Validators.required],
-      flightType: ['',Validators.required],
-      date: ['',Validators.required],
-      time: ['',Validators.required],
-      fare: ['',Validators.required],
+      flightType: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      fare: ['', Validators.required],
     });
   }
 
@@ -48,17 +48,20 @@ export class AddFlightScheduleComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('ADMIN'))
+        this.router.navigate(['/']);
     }
 
-    this.airlineService.getAllAirlines().subscribe((airlines) => {      
+    this.airlineService.getAllAirlines().subscribe((airlines) => {
       this.airlines = airlines.filter(airline => airline.isActive === 'true')
     });
   }
 
   onSubmit() {
     //console.log(this.scheduleForm.value)
-    let date = dayjs(this.scheduleForm.get('date')?.value).format("YYYY-MM-DD")        
-    let time = dayjs(this.scheduleForm.get('time')?.value).format("HH:mm")  
+    let date = dayjs(this.scheduleForm.get('date')?.value).format("YYYY-MM-DD")
+    let time = dayjs(this.scheduleForm.get('time')?.value).format("HH:mm")
     let source = this.scheduleForm.get('source')?.value
     let destination = this.scheduleForm.get('destination')?.value
     this.scheduleForm.patchValue({ source: source.toUpperCase() });
@@ -66,18 +69,18 @@ export class AddFlightScheduleComponent implements OnInit {
     this.scheduleForm.patchValue({ date: date });
     this.scheduleForm.patchValue({ time: time });
     this.scheduleService.addSchedule(this.scheduleForm.value)
-    .subscribe({
-      next: data => {
-        //console.log(data)
-        this.router.navigate(['/admin/schedule'])
-      },
-      error: error => {
-        this.showToast('error', error.error, 'Please check and try again')
-      }
-    }) 
+      .subscribe({
+        next: data => {
+          //console.log(data)
+          this.router.navigate(['/admin/schedule'])
+        },
+        error: error => {
+          this.showToast('error', error.error.error, 'Please check and try again')
+        }
+      })
   }
 
-  showToast(type:string, msg:string, detail:string) {
+  showToast(type: string, msg: string, detail: string) {
     this.messageService.add({ severity: type, summary: msg, detail: detail });
   }
 

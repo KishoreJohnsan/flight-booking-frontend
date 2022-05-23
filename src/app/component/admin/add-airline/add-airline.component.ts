@@ -16,8 +16,8 @@ export class AddAirlineComponent implements OnInit {
 
   airlineForm: FormGroup;
 
-  constructor(private builder: FormBuilder, private airlineService: AirlineService, private router:Router,
-    private messageService : MessageService) {
+  constructor(private builder: FormBuilder, private airlineService: AirlineService, private router: Router,
+    private messageService: MessageService) {
     this.airlineForm = this.builder.group({
       airlineName: ['', Validators.required],
       address: ['', Validators.required],
@@ -34,25 +34,28 @@ export class AddAirlineComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('ADMIN'))
+        this.router.navigate(['/']);
     }
 
   }
 
-  onSubmit() {    
+  onSubmit() {
     this.airlineService.addAirline(this.airlineForm.value)
-     .subscribe({
+      .subscribe({
         next: data => {
           //console.log(data)
           this.showToast('success', 'Data added successfully', 'Airline Data saved')
           this.router.navigate(['/admin/airline'])
         },
         error: error => {
-          this.showToast('error', error.error, 'Please check and try again')
+          this.showToast('error', error.error.error, 'Please check and try again')
         }
       })
   }
 
-  showToast(type:string, msg:string, detail:string) {
+  showToast(type: string, msg: string, detail: string) {
     this.messageService.add({ severity: type, summary: msg, detail: detail });
   }
 

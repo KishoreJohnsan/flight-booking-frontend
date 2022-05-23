@@ -5,13 +5,14 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   handleError(error: HttpErrorResponse) {
 
@@ -23,9 +24,20 @@ export class InterceptorService implements HttpInterceptor {
     }
     return throwError(() => error);
   }
-  
+
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
+    const data = this.loginService.getToken() || '';
+    //console.log(data)
+    if (data) {
+      const parsedData = JSON.parse(data);
+      //console.log(parsedData.token)
+      req = req.clone({
+        setHeaders: {
+          Authorization: "Bearer " + parsedData.token
+        }
+      })
+    }
     return next.handle(req)
       .pipe(
         catchError(this.handleError)

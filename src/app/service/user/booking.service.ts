@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FlightSchedule } from 'src/app/interfaces/adminInterface';
 import { Booking } from 'src/app/interfaces/userInterface';
 import { environment } from 'src/environments/environment';
 
@@ -10,16 +11,24 @@ import { environment } from 'src/environments/environment';
 })
 export class BookingService {
 
-  private baseUrl: string = environment.apiBaseUrl.concat('/bookings');
+  //private baseUrl: string = environment.apiBaseUrl.concat('/bookings');
+  private baseUrl: string = environment.apiUserUrl;
 
   constructor(private http: HttpClient, private router : Router) { }
 
   getAllBookingByUser(user: string): Observable<Booking[]> {
-    return this.http.get<Booking[]>(this.baseUrl.concat('/booking/user/').concat(user));
+    return this.http.get<Booking[]>(this.baseUrl.concat('/bookingByUser/').concat(user));
   }
 
   getAllBookingById(bookingId: string): Observable<Booking> {
-    return this.http.get<Booking>(this.baseUrl.concat('/booking/').concat(bookingId));
+    return this.http.get<Booking>(this.baseUrl.concat('/bookingById/').concat(bookingId));
+  }
+
+  getScheduleById(scheduleId: string) {
+    let url: string = this.baseUrl.concat('/scheduleById/')
+      .concat(scheduleId)
+      
+     return this.http.get<FlightSchedule>(url)
   }
 
   bookTicket(booking: Booking) {
@@ -43,7 +52,7 @@ export class BookingService {
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(bookingId);
 
-    let url: string = this.baseUrl.concat('/booking/cancel/').concat(bookingId)
+    let url: string = this.baseUrl.concat('/cancelBooking/').concat(bookingId)
     this.http.put<any>(url, body, { 'headers': headers })
       .subscribe({
         next: data => {

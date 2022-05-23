@@ -20,6 +20,9 @@ export class AdminhomeComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('ADMIN'))
+        this.router.navigate(['/']);
     }
 
   }

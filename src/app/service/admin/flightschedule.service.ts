@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class FlightscheduleService {
 
-  private baseUrl: string = environment.apiBaseUrl.concat('/schedules');
+  //private baseUrl: string = environment.apiBaseUrl.concat('/schedules');
+  private baseUrl: string = environment.apiAdminUrl;
   
   constructor(private http: HttpClient, private router:Router) { }
 
@@ -53,14 +54,6 @@ export class FlightscheduleService {
           console.error('There was an error!', error);
         }
       })
-  }
-
-  getScheduleByStation(schedule: FlightSchedule) {
-    let url: string = this.baseUrl.concat('/scheduleByStn/')
-      .concat(schedule.source)
-      .concat('/')
-      .concat(schedule.destination)
-     return this.http.get<FlightSchedule[]>(url)
   }
 
   getScheduleById(scheduleId: string) {

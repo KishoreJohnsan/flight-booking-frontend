@@ -20,6 +20,9 @@ export class UserhomeComponent implements OnInit {
       let data: Token = JSON.parse(dataString);
       if (dayjs().isAfter(dayjs(data.expiry)))
         this.router.navigate(['/']);
+
+      if (!data.role.includes('USER'))
+        this.router.navigate(['/']);
     }
   }
 

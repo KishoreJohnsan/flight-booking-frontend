@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AirlineService {
 
-  private baseUrl: string = environment.apiBaseUrl.concat('/airlines');
+  //private baseUrl: string = environment.apiBaseUrl.concat('/airlines');
+  private baseUrl: string = environment.apiAdminUrl;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -61,6 +62,7 @@ export class AirlineService {
   }
 
   saveEditedAirline(airline : Airline){
+    //console.log(airline)
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(airline);
     let url:string = this.baseUrl.concat('/airline')    
