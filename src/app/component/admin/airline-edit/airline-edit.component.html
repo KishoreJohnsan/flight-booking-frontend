@@ -1,0 +1,126 @@
+<!-- <div>
+  <form [formGroup]="airlineEditForm" (ngSubmit)="onSaveEdit()">
+    <input type="hidden" formControlName="airlineId" id="airlineId">
+    <span class="p-float-label">
+      <input
+        type="text"
+        id="airlineName"
+        formControlName="airlineName"
+        pInputText
+        readonly
+      />
+      <label for="airlineName">Airline Name</label>
+    </span>
+    <br /><br />
+
+    <span class="p-float-label">
+      <input type="text" id="address" formControlName="address" pInputText readonly/>
+      <label for="address">Address</label>
+    </span>
+    <br /><br />
+    <span class="p-float-label">
+      <input type="text" id="contact" formControlName="contact" pInputText readonly/>
+      <label for="contact">Contact</label>
+    </span>
+    
+
+    <h4>Status</h4>
+    <p-radioButton
+      name="isActive"
+      formControlName="isActive"
+      value="true"
+      label="Active"
+    ></p-radioButton>
+    <br />
+    <p-radioButton
+      name="isActive"
+      formControlName="isActive"
+      value="false"
+      label="InActive"
+    ></p-radioButton>
+
+    <br /><br />
+    <button type="submit" pButton>Update</button>
+  </form>
+</div> -->
+
+<div class="card">
+  <div
+    class="flex flex-column card-container align-items-center justify-content-center border-3 border-blue-500 h-fit m-2 pt-5 border-round"
+  >
+   
+    <form [formGroup]="airlineEditForm" (ngSubmit)="onSaveEdit()">
+      <input type="hidden" formControlName="airlineId" id="airlineId" />
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round mb-4"
+      >
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="airlineName"
+            formControlName="airlineName"
+            pInputText
+            readonly
+          />
+          <label for="airlineName">Airline Name</label>
+        </span>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round  mb-4"
+      >
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="address"
+            formControlName="address"
+            pInputText
+            readonly
+          />
+          <label for="address">Address</label>
+        </span>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round mb-2"
+      >
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="contact"
+            formControlName="contact"
+            pInputText
+            readonly
+          />
+          <label for="contact">Contact</label>
+        </span>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round mt-3"
+      >
+        <h4 class="mr-3">Status</h4>
+        <p-radioButton
+          name="isActive"
+          formControlName="isActive"
+          value="true"
+          label="Active"
+          class="mr-3"
+        ></p-radioButton>
+        <br />
+        <p-radioButton
+          name="isActive"
+          formControlName="isActive"
+          value="false"
+          label="InActive"
+        ></p-radioButton>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round"
+      >
+        <button type="submit" pButton>Update</button>
+      </div>
+    </form>
+  </div>
+</div>

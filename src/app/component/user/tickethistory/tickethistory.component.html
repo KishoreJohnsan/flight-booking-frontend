@@ -1,0 +1,160 @@
+<!-- <h3>Booking History</h3>
+<p *ngIf="bookings.length === 0">No records to display</p>
+<p-table [value]="bookings" *ngIf="bookings.length > 0">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>PNR</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Airline</th>
+      <th>Departure Date</th>
+      <th>Departure Time</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-booking>    
+    <tr>
+      <td>{{ booking.bookingId }}</td>
+      <td>{{ booking.source }}</td>
+      <td>{{ booking.destination }}</td>
+      <td>{{ booking.airline }}</td>
+      <td>{{ booking.date }}</td>
+      <td>{{ booking.time }}</td>
+      <td>{{ booking.status }}</td>
+      <td>
+        <Button
+          (click)="show(booking.bookingId)"
+          pButton
+          icon="pi pi-eye"
+          class="p-button-rounded"
+          pTooltip="View"
+          tooltipPosition="top"
+        ></Button>
+      </td>
+      <td>
+        <Button
+          pButton
+          icon="pi pi-download"
+          class="p-button-rounded p-button-success"
+          pTooltip="Download"
+          tooltipPosition="top"
+          (click)="downloadTicket(booking.bookingId)"
+        ></Button>
+      </td>
+      <ng-template [ngIf]="booking.status === 'BOOKED'">
+        <td>
+          <Button
+            pButton
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger"
+            pTooltip="Cancel Ticket"
+            tooltipPosition="top"
+            (click)="cancelTicket(booking.bookingId)"
+          ></Button>
+        </td>
+      </ng-template>
+      <ng-template [ngIf]="booking.status === 'CANCELLED'">
+        <td>
+          <Button
+            pButton
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            pTooltip="Delete"
+            tooltipPosition="top"
+            (click)="deleteTicket(booking)"
+          ></Button>
+        </td>
+      </ng-template>
+    </tr>
+  </ng-template>
+</p-table> -->
+
+<p-toast position="top-right"></p-toast>
+
+<div
+  class=" border-3 border-blue-500 h-fit m-2 px-5 py-2 border-round"
+>
+
+<h3>Booking History</h3>
+<p *ngIf="bookings.length === 0">No records to display</p>
+<p-table [value]="bookings" *ngIf="bookings.length > 0" [scrollable]="true" scrollHeight="450px">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>PNR</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Airline</th>
+      <th>Departure Date</th>
+      <th>Departure Time</th>
+      <th>Status</th>
+      <th></th>
+      <!-- <th></th>
+      <th></th>
+      <th></th> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-booking>    
+    <tr>
+      <td>{{ booking.bookingId }}</td>
+      <td>{{ booking.source }}</td>
+      <td>{{ booking.destination }}</td>
+      <td>{{ booking.airline }}</td>
+      <td>{{ booking.date }}</td>
+      <td>{{ booking.time }}</td>
+      <td>{{ booking.status }}</td>
+      <td>
+        <Button
+          (click)="show(booking.bookingId)"
+          pButton
+          icon="pi pi-eye"
+          class="p-button-rounded"
+          pTooltip="View"
+          tooltipPosition="top"
+          ngClass="mr-5"
+        ></Button>
+        <Button
+        pButton
+        icon="pi pi-download"
+        class="p-button-rounded p-button-success"
+        pTooltip="Download"
+        tooltipPosition="top"
+        (click)="downloadTicket(booking.bookingId)"
+        ngClass="mr-5"
+      ></Button>
+
+      <ng-template [ngIf]="booking.status === 'BOOKED'">
+        
+        <Button
+          pButton
+          icon="pi pi-times"
+          class="p-button-rounded p-button-danger"
+          pTooltip="Cancel Ticket"
+          tooltipPosition="top"
+          (click)="cancelTicket(booking.bookingId)"
+        ></Button>
+      
+    </ng-template>
+    <ng-template [ngIf]="booking.status === 'CANCELLED'">
+    
+        <Button
+          pButton
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-danger"
+          pTooltip="Delete"
+          tooltipPosition="top"
+          (click)="deleteTicket(booking)"
+        ></Button>
+     
+    </ng-template>
+      </td>
+     <!--  <td>
+       
+      </td> -->
+     
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,106 @@
+<!-- <h3>List of available airlines</h3>
+<Button (click)="handleClick()" pButton>Add Airline</Button>
+<p *ngIf="airlines.length === 0">No records to display</p>
+<p-table [value]="airlines" *ngIf="airlines.length > 0">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Airline Name</th>
+      <th>Address</th>
+      <th>Contact</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-airline>    
+    <tr>
+      <td>{{ airline.airlineName }}</td>
+      <td>{{ airline.address }}</td>
+      <td>{{ airline.contact }}</td>
+      <ng-template [ngIf]="airline.isActive === 'true'">
+        <td>ACTIVE</td>
+      </ng-template>
+      <ng-template [ngIf]="airline.isActive === 'false'">
+        <td>INACTIVE</td>
+      </ng-template>
+      <td>
+        <button
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success"
+          pTooltip="Edit"
+          tooltipPosition="top"
+          (click)="show(airline.airlineId)"
+        ></button>
+      </td>
+      <td>
+        <button
+          (click)="deleteAirline(airline)"
+          pButton
+          icon="pi pi-trash"
+          class="p-button-danger p-button-rounded"
+          pTooltip="Delete"
+          tooltipPosition="top"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table> -->
+
+<p-toast position="top-right"></p-toast>
+
+<div
+  class=" border-3 border-blue-500 h-fit m-2 px-5 py-2 border-round"
+>
+<h3>List of available airlines</h3>
+<Button (click)="handleClick()" pButton>Add Airline</Button>
+<p *ngIf="airlines.length === 0">No records to display</p>
+<p-table [value]="airlines" *ngIf="airlines.length > 0" [scrollable]="true" scrollHeight="450px">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Airline Name</th>
+      <th>Address</th>
+      <th>Contact</th>
+      <th>Status</th>
+      <th></th>
+      <!-- <th></th> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-airline>    
+    <tr>
+      <td>{{ airline.airlineName }}</td>
+      <td>{{ airline.address }}</td>
+      <td>{{ airline.contact }}</td>
+      <ng-template [ngIf]="airline.isActive === 'true'">
+        <td>ACTIVE</td>
+      </ng-template>
+      <ng-template [ngIf]="airline.isActive === 'false'">
+        <td>INACTIVE</td>
+      </ng-template>
+      <td>
+        <button
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success"
+          pTooltip="Edit"
+          tooltipPosition="top"
+          (click)="show(airline.airlineId)"
+          ngClass="mr-5"
+        ></button>
+        <button
+        (click)="deleteAirline(airline)"
+        pButton
+        icon="pi pi-trash"
+        class="p-button-danger p-button-rounded"
+        pTooltip="Delete"
+        tooltipPosition="top"
+        
+      ></button>
+      </td>
+     <!--  <td>
+       
+      </td> -->
+    </tr>
+  </ng-template>
+</p-table>
+</div>

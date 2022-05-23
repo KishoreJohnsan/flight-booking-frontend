@@ -1,0 +1,155 @@
+<!-- <div>
+  <h3>Sign Up</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <span class="p-float-label">
+      <input type="text" id="username" formControlName="username" pInputText />
+      <label for="username">User Name</label>
+    </span>
+    <small
+      *ngIf="
+        registerForm.get('username')?.invalid &&
+        (registerForm.get('username')?.touched ||
+          registerForm.get('username')?.dirty)
+      "
+      [ngStyle]="{ color: 'var(--red-600)' }"
+      >Username is required</small
+    >
+    <br /><br />
+    <span class="p-float-label">
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        pPassword
+        [feedback]="false"
+      />
+      <label for="password">Password</label>
+    </span>
+    <small
+      *ngIf="
+        registerForm.get('password')?.invalid &&
+        (registerForm.get('password')?.touched ||
+          registerForm.get('password')?.dirty)
+      "
+      [ngStyle]="{ color: 'var(--red-600)' }"
+      >Password is required</small
+    >
+    <br /><br />
+    <span class="p-float-label">
+      <input
+        type="password"
+        id="passwordCnfm"
+        formControlName="passwordCnfm"
+        pPassword
+        [feedback]="false"
+      />
+      <label for="passwordCnfm">Confirm Password</label>
+    </span>   
+    <small
+      *ngIf="registerForm.get('passwordCnfm')?.hasError('notEquivalent')"
+      [ngStyle]="{ color: 'var(--red-600)' }"
+      >Password and Confirm Password must be same</small
+    >
+    <br /><br />
+    <button type="submit" [disabled]="registerForm.invalid" pButton>Sign Up</button>
+  </form>
+</div> -->
+
+<p-toast position="top-right"></p-toast>
+
+<div class="card">
+  <div
+    class="flex flex-column card-container align-items-center justify-content-center border-3 border-blue-500 h-fit m-2 border-round"
+  >
+    <div
+      class="flex align-items-center justify-content-center h-3rem font-bold border-round m-2"
+    >
+      <h3>Sign Up</h3>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold border-round m-2"
+      >
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            pInputText
+          />
+          <label for="username">User Name</label>
+        </span>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold border-round m-2"
+      >
+        <small
+          *ngIf="
+            registerForm.get('username')?.invalid &&
+            (registerForm.get('username')?.touched ||
+              registerForm.get('username')?.dirty)
+          "
+          [ngStyle]="{ color: 'var(--red-600)' }"
+          >Username is required</small
+        >
+      </div>
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold text-white border-round m-2"
+      >
+        <span class="p-float-label">
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            pPassword
+            [feedback]="false"
+          />
+          <label for="password">Password</label>
+        </span>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold text-white border-round m-2"
+      >
+        <small
+          *ngIf="
+            registerForm.get('password')?.invalid &&
+            (registerForm.get('password')?.touched ||
+              registerForm.get('password')?.dirty)
+          "
+          [ngStyle]="{ color: 'var(--red-600)' }"
+          >Password is required</small
+        >
+      </div>
+      <div
+        class="flex align-items-center justify-content-center h-3rem font-bold text-white border-round m-2"
+      >
+        <span class="p-float-label">
+          <input
+            type="password"
+            id="passwordCnfm"
+            formControlName="passwordCnfm"
+            pPassword
+            [feedback]="false"
+          />
+          <label for="passwordCnfm">Confirm Password</label>
+        </span>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold text-white border-round m-2"
+      >
+        <small
+          *ngIf="registerForm.get('passwordCnfm')?.hasError('notEquivalent')"
+          [ngStyle]="{ color: 'var(--red-600)' }"
+          >Password and Confirm Password must be same</small
+        >
+      </div>
+      <div
+        class="flex align-items-center justify-content-center h-4rem font-bold text-white border-round m-2"
+      >
+        <button type="submit" [disabled]="registerForm.invalid" pButton>
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

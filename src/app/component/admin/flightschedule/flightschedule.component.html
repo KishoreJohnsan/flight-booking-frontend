@@ -1,0 +1,127 @@
+<!-- <h3>List of available flights</h3>
+<Button (click)="handleClick()" pButton>Add Flight Schedule</Button>
+<p *ngIf="schedules.length === 0">No records to display</p>
+<p-table [value]="schedules" *ngIf="schedules.length > 0">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Airline</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Fare</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-schedule>    
+    <tr>
+      <td>{{ schedule.airline }}</td>
+      <td>{{ schedule.source }}</td>
+      <td>{{ schedule.destination }}</td>
+      <td>{{ schedule.date }}</td>
+      <td>{{ schedule.time }}</td>
+      <td>{{ schedule.fare }}</td>
+      <td>
+        <Button
+          pButton
+          icon="pi pi-eye"
+          class="p-button-rounded"
+          pTooltip="View"
+          tooltipPosition="top"
+          (click)="show(schedule.scheduleId)"
+        ></Button>
+      </td>
+      <td>
+        <Button
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success"
+          pTooltip="Edit"
+          tooltipPosition="top"
+          (click)="showEdit(schedule.scheduleId)"
+        ></Button>
+      </td>
+      <td>
+        <Button
+          (click)="deleteSchedule(schedule)"
+          pButton
+          icon="pi pi-trash"
+          class="p-button-danger p-button-rounded"
+          pTooltip="Delete"
+          tooltipPosition="top"
+        ></Button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table> -->
+
+<p-toast position="top-right"></p-toast>
+
+<div
+  class=" border-3 border-blue-500 h-fit m-2 px-5 py-2 border-round"
+>
+
+<h3>List of available flights</h3>
+<Button (click)="handleClick()" pButton>Add Flight Schedule</Button>
+<p *ngIf="schedules.length === 0">No records to display</p>
+<p-table [value]="schedules" *ngIf="schedules.length > 0" [scrollable]="true" scrollHeight="450px">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Airline</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Fare</th>
+      <th></th>
+     <!--  <th></th>
+      <th></th> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-schedule>    
+    <tr>
+      <td>{{ schedule.airline }}</td>
+      <td>{{ schedule.source }}</td>
+      <td>{{ schedule.destination }}</td>
+      <td>{{ schedule.date }}</td>
+      <td>{{ schedule.time }}</td>
+      <td>{{ schedule.fare }}</td>
+      <td>
+        <Button
+          pButton
+          icon="pi pi-eye"
+          class="p-button-rounded"
+          pTooltip="View"
+          tooltipPosition="top"
+          (click)="show(schedule.scheduleId)"
+          ngClass="mr-5"
+        ></Button>
+        <Button
+        pButton
+        icon="pi pi-pencil"
+        class="p-button-rounded p-button-success"
+        pTooltip="Edit"
+        tooltipPosition="top"
+        (click)="showEdit(schedule.scheduleId)"
+        ngClass="mr-5"
+      ></Button>
+        <Button
+        (click)="deleteSchedule(schedule)"
+        pButton
+        icon="pi pi-trash"
+        class="p-button-danger p-button-rounded"
+        pTooltip="Delete"
+        tooltipPosition="top"
+      ></Button>
+      </td>
+      <!-- <td>
+     
+      </td>
+      <td>
+     
+      </td> -->
+    </tr>
+  </ng-template>
+</p-table> 

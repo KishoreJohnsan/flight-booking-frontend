@@ -1,0 +1,128 @@
+<!-- <ul *ngIf="isHome() || hasRoute('/result')">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/login">Login</a></li>
+  <li><a routerLink="/signup">Sign Up</a></li>
+</ul>
+<ul *ngIf="hasRoute('/login')">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/signup">Sign Up</a></li>
+</ul>
+<ul *ngIf="hasRoute('/signup')">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/login">Login</a></li>
+</ul>
+<ul *ngIf="isAdmin()">
+  <li><a routerLink="/admin/home">Home</a></li>
+  <li><a (click)="handleLogout()">Log Out</a></li>
+</ul>
+<ul *ngIf="isUser()">
+  <li><a routerLink="/user/home">Home</a></li>
+  <li *ngIf="!(hasRoute('/user/home') || hasRoute('/user/search'))">
+    <a routerLink="/user/search">Search Flight</a>
+  </li>
+  <li *ngIf="!hasRoute('/user/history')">
+    <a routerLink="/user/history">Booking History</a>
+  </li>
+  <li><a (click)="handleLogout()">Log Out</a></li>
+</ul> -->
+
+<div class="card">
+  <div
+    class="flex justify-content-between flex-wrap card-container border-3 border-blue-500 h-fit m-2 border-round"
+  >
+    <div>
+      <p-image
+        src="assets/logo1.svg"
+        alt="Image"
+        width="200"
+        height="65"
+      ></p-image>
+    </div>
+
+    <div
+      class="flex justify-content-end flex-wrap"
+      *ngIf="isHome() || hasRoute('/result')"
+    >
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/" class="font-bold text-lg">Home</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/login" class="font-bold text-lg">Login</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/signup" class="font-bold text-lg">Sign Up</a>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end flex-wrap" *ngIf="hasRoute('/login')">
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/" class="font-bold text-lg">Home</a>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/signup" class="font-bold text-lg">Sign Up</a>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end flex-wrap" *ngIf="hasRoute('/signup')">
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/" class="font-bold text-lg">Home</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/login" class="font-bold text-lg">Login</a>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end flex-wrap" *ngIf="isAdmin()">
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/admin/home" class="font-bold text-lg">Home</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a (click)="handleLogout()" class="font-bold text-lg">Log Out</a>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end flex-wrap" *ngIf="isUser()">
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a routerLink="/user/home" class="font-bold text-lg">Home</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+        *ngIf="!(hasRoute('/user/home') || hasRoute('/user/search'))"
+      >
+        <a routerLink="/user/search" class="font-bold text-lg">Search Flight</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+        *ngIf="!hasRoute('/user/history')"
+      >
+        <a routerLink="/user/history" class="font-bold text-lg">Booking History</a>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold  m-2"
+      >
+        <a (click)="handleLogout()" class="font-bold text-lg" >Log Out</a>
+      </div>
+    </div>
+  </div>
+</div>

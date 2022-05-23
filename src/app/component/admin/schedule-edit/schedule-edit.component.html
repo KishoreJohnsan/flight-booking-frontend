@@ -1,0 +1,341 @@
+<!-- <div>
+  <form [formGroup]="scheduleEditForm" (ngSubmit)="onSaveEdit()">
+    <input type="hidden" formControlName="scheduleId" id="scheduleId" />
+    <span class="p-float-label">
+      <input type="text" id="source" formControlName="source" pInputText readonly/>
+      <label for="source">From</label>
+    </span>
+    <br /><br />
+
+    <span class="p-float-label">
+      <input
+        type="text"
+        id="destination"
+        formControlName="destination"
+        pInputText
+        readonly
+      />
+      <label for="destination">To</label>
+    </span>
+    <br /><br />
+    <span class="p-float-label">
+      <input type="text" id="airline" formControlName="airline" pInputText readonly/>
+      <label for="airline">Airline</label>
+    </span>    
+    <br /><br />
+    <span class="p-float-label">
+      <p-inputNumber
+        id="flightNumber"
+        formControlName="flightNumber"
+        [useGrouping]="false"
+      ></p-inputNumber>
+      <label for="flightNumber">Flight Number</label>
+    </span>
+    <small
+        *ngIf="
+          scheduleEditForm.get('flightNumber')?.invalid &&
+          (scheduleEditForm.get('flightNumber')?.touched ||
+            scheduleEditForm.get('flightNumber')?.dirty)
+        " [ngStyle]="{color:'var(--red-600)'}"
+        >Flight Number is required</small
+      >
+    <br /><br />
+    <span class="p-float-label">
+      <input
+        type="text"
+        id="flightType"
+        formControlName="flightType"
+        pInputText
+      />
+      <label for="flightType">Flight Type</label>
+    </span>
+    <small
+        *ngIf="
+          scheduleEditForm.get('flightType')?.invalid &&
+          (scheduleEditForm.get('flightType')?.touched ||
+            scheduleEditForm.get('flightType')?.dirty)
+        " [ngStyle]="{color:'var(--red-600)'}"
+        >Flight Type is required</small
+      >
+    <br /><br />
+    <span class="p-float-label">
+      <p-calendar
+        id="date"
+        formControlName="date"
+        dateFormat="yy-mm-dd"
+        [showIcon]="true"
+      ></p-calendar>
+      <label for="date">Departure Date</label>
+    </span>
+    <small
+        *ngIf="
+          scheduleEditForm.get('date')?.invalid &&
+          (scheduleEditForm.get('date')?.touched ||
+            scheduleEditForm.get('date')?.dirty)
+        " [ngStyle]="{color:'var(--red-600)'}"
+        >Departure Date is required</small
+      >
+    <br /><br />
+    <span class="p-float-label">
+      <p-calendar
+        id="time"
+        formControlName="time"
+        [showTime]="true"
+        hourFormat="24"
+        dateFormat="HH:mm"
+        [showIcon]="true"
+        icon="pi pi-clock"
+        [timeOnly]="true"
+      ></p-calendar>
+      <label for="time">Departure Time</label>
+    </span>
+    <small
+        *ngIf="
+          scheduleEditForm.get('time')?.invalid &&
+          (scheduleEditForm.get('time')?.touched ||
+            scheduleEditForm.get('time')?.dirty)
+        " [ngStyle]="{color:'var(--red-600)'}"
+        >Departure Time is required</small
+      >
+    <br /><br />
+    <span class="p-float-label">
+      <p-inputNumber
+        id="fare"
+        formControlName="fare"        
+      ></p-inputNumber>
+      <label for="fare">Fare</label>
+    </span>
+    <small
+        *ngIf="
+          scheduleEditForm.get('fare')?.invalid &&
+          (scheduleEditForm.get('fare')?.touched ||
+            scheduleEditForm.get('fare')?.dirty)
+        " [ngStyle]="{color:'var(--red-600)'}"
+        >Fare is required</small
+      >
+    <br /><br />
+
+    <button type="submit" pButton [disabled]="scheduleEditForm.invalid">Update</button>
+  </form>
+</div> -->
+
+<div class="card">
+  <div
+    class="flex flex-column card-container align-items-center justify-content-evenly border-3 border-blue-500 h-fit m-2 border-round"
+  >
+    <form [formGroup]="scheduleEditForm" (ngSubmit)="onSaveEdit()">
+      <input type="hidden" formControlName="scheduleId" id="scheduleId" />
+      <div class="grid pt-5">
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <input
+                type="text"
+                id="source"
+                formControlName="source"
+                pInputText
+                readonly
+              />
+              <label for="source">From</label>
+            </span>
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <input
+                type="text"
+                id="destination"
+                formControlName="destination"
+                pInputText
+                readonly
+              />
+              <label for="destination">To</label>
+            </span>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="grid">
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <input
+                type="text"
+                id="airline"
+                formControlName="airline"
+                pInputText
+                readonly
+              />
+              <label for="airline">Airline</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2 w-full"
+          >
+            <span class="p-float-label">
+              <p-inputNumber id="fare" formControlName="fare"></p-inputNumber>
+              <label for="fare">Fare</label>
+            </span>
+          </div>
+          <div
+            class="flex align-items-center justify-content-start font-bold border-round m-2 w-full"
+          >
+            <small
+              *ngIf="
+                scheduleEditForm.get('fare')?.invalid &&
+                (scheduleEditForm.get('fare')?.touched ||
+                  scheduleEditForm.get('fare')?.dirty)
+              "
+              [ngStyle]="{ color: 'var(--red-600)' }"
+              >Fare is required</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <p-inputNumber
+                id="flightNumber"
+                formControlName="flightNumber"
+                [useGrouping]="false"
+              ></p-inputNumber>
+              <label for="flightNumber">Flight Number</label>
+            </span>
+          </div>
+          <div
+            class="flex align-items-center justify-content-start font-bold border-round m-2"
+          >
+            <small
+              *ngIf="
+                scheduleEditForm.get('flightNumber')?.invalid &&
+                (scheduleEditForm.get('flightNumber')?.touched ||
+                  scheduleEditForm.get('flightNumber')?.dirty)
+              "
+              [ngStyle]="{ color: 'var(--red-600)' }"
+              >Flight Number is required</small
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <input
+                type="text"
+                id="flightType"
+                formControlName="flightType"
+                pInputText
+              />
+              <label for="flightType">Flight Type</label>
+            </span>
+          </div>
+          <div
+            class="flex align-items-center justify-content-start font-bold border-round m-2"
+          >
+            <small
+              *ngIf="
+                scheduleEditForm.get('flightType')?.invalid &&
+                (scheduleEditForm.get('flightType')?.touched ||
+                  scheduleEditForm.get('flightType')?.dirty)
+              "
+              [ngStyle]="{ color: 'var(--red-600)' }"
+              >Flight Type is required</small
+            >
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="grid">
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <p-calendar
+                id="date"
+                formControlName="date"
+                dateFormat="yy-mm-dd"
+                [showIcon]="true"
+              ></p-calendar>
+              <label for="date">Departure Date</label>
+            </span>
+          </div>
+          <div
+            class="flex align-items-center justify-content-start font-bold border-round m-2"
+          >
+            <small
+              *ngIf="
+                scheduleEditForm.get('date')?.invalid &&
+                (scheduleEditForm.get('date')?.touched ||
+                  scheduleEditForm.get('date')?.dirty)
+              "
+              [ngStyle]="{ color: 'var(--red-600)' }"
+              >Departure Date is required</small
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="flex align-items-center justify-content-start h-3rem font-bold border-round m-2"
+          >
+            <span class="p-float-label">
+              <p-calendar
+                id="time"
+                formControlName="time"
+                [showTime]="true"
+                hourFormat="24"
+                dateFormat="HH:mm"
+                [showIcon]="true"
+                icon="pi pi-clock"
+                [timeOnly]="true"
+              ></p-calendar>
+              <label for="time">Departure Time</label>
+            </span>
+          </div>
+          <div
+            class="flex align-items-center justify-content-start font-bold border-round m-2"
+          >
+            <small
+              *ngIf="
+                scheduleEditForm.get('time')?.invalid &&
+                (scheduleEditForm.get('time')?.touched ||
+                  scheduleEditForm.get('time')?.dirty)
+              "
+              [ngStyle]="{ color: 'var(--red-600)' }"
+              >Departure Time is required</small
+            >
+          </div>
+        </div>
+        
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center h-4rem font-bold border-round m-2"
+      >
+        <button type="submit" pButton [disabled]="scheduleEditForm.invalid">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

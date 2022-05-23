@@ -1,0 +1,57 @@
+<!-- <div *ngIf="hasRoute('/user/result') || hasRoute('/result')">
+<h3>Search Result</h3>
+<p *ngIf="results.length === 0">No records to display</p>
+<p-table [value]="results" *ngIf="results.length > 0">  
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Airline</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Departure Date</th>
+      <th>Departure Time</th>
+      <th>Fare</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-result>    
+      <tr>
+      <td>{{ result.airline }}</td>
+      <td>{{ result.source }}</td>
+      <td>{{ result.destination }}</td>
+      <td>{{ result.date }}</td>
+      <td>{{ result.time }}</td>
+      <td>{{ result.fare }}</td>
+      <td><Button (click)="bookTicket(result)" pButton>Book</Button></td>
+    </tr>
+  </ng-template>
+</p-table>
+</div> -->
+
+<div *ngIf="hasRoute('/user/result') || hasRoute('/result')" class=" border-3 border-blue-500 h-fit m-2 px-5 py-2 border-round">
+  <h3>Search Result</h3>
+  <p *ngIf="results.length === 0">No records to display</p>
+  <p-table [value]="results" *ngIf="results.length > 0" [scrollable]="true" scrollHeight="450px">  
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Airline</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure Date</th>
+        <th>Departure Time</th>
+        <th>Fare</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-result>    
+        <tr>
+        <td>{{ result.airline }}</td>
+        <td>{{ result.source }}</td>
+        <td>{{ result.destination }}</td>
+        <td>{{ result.date }}</td>
+        <td>{{ result.time }}</td>
+        <td>{{ result.fare }}</td>
+        <td><Button (click)="bookTicket(result)" pButton>Book</Button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  </div> 
