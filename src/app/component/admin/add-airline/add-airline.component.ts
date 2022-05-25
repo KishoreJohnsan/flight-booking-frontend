@@ -42,6 +42,8 @@ export class AddAirlineComponent implements OnInit {
   }
 
   onSubmit() {
+    let airlineName = this.airlineForm.get('airlineName')?.value.replace(/\s/g,'')    
+    this.airlineForm.patchValue({ airlineName: airlineName.toUpperCase()});    
     this.airlineService.addAirline(this.airlineForm.value)
       .subscribe({
         next: data => {

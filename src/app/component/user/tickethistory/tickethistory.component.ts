@@ -20,6 +20,7 @@ export class TickethistoryComponent implements OnInit {
   bookings: Booking[] = [];
   user!: string | '';
   ref!: DynamicDialogRef;
+  blob: any;
 
   constructor(private router: Router, private bookingService: BookingService, public dialogService: DialogService, private messageService: MessageService) { }
 
@@ -86,7 +87,18 @@ export class TickethistoryComponent implements OnInit {
   }
 
   downloadTicket(bookingId: string) {
+    this.bookingService.downloadTicket(bookingId).subscribe({
+      next: blob => {
 
+        const file = new Blob([blob], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL, '_blank', 'width=1000, height=800');
+
+      },
+      error: error => {
+        this.showToast('error', error.error.error, `Please check and try again`)
+      }
+    })
   }
 
   ngOnDestroy() {

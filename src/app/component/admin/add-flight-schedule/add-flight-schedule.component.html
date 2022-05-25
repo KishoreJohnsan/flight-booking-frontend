@@ -238,9 +238,7 @@
             class="flex align-items-center justify-content-center font-bold border-round m-2"
           >
             <small
-              *ngIf="
-              scheduleForm.get('airline')?.invalid
-              "
+              *ngIf="scheduleForm.get('airline')?.touched && scheduleForm.get('airline')?.invalid"
               [ngStyle]="{ color: 'var(--red-600)' }"
               >Please select an airline</small
             >
@@ -333,7 +331,6 @@
             >
           </div>
         </div>
-        
       </div>
 
       <div class="grid">
@@ -397,8 +394,6 @@
             >
           </div>
         </div>
-        
-        
       </div>
 
       <div

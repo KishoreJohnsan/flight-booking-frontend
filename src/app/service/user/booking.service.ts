@@ -14,7 +14,7 @@ export class BookingService {
   //private baseUrl: string = environment.apiBaseUrl.concat('/bookings');
   private baseUrl: string = environment.apiUserUrl;
 
-  constructor(private http: HttpClient, private router : Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getAllBookingByUser(user: string): Observable<Booking[]> {
     return this.http.get<Booking[]>(this.baseUrl.concat('/bookingByUser/').concat(user));
@@ -27,8 +27,8 @@ export class BookingService {
   getScheduleById(scheduleId: string) {
     let url: string = this.baseUrl.concat('/scheduleById/')
       .concat(scheduleId)
-      
-     return this.http.get<FlightSchedule>(url)
+
+    return this.http.get<FlightSchedule>(url)
   }
 
   bookTicket(booking: Booking) {
@@ -37,14 +37,14 @@ export class BookingService {
     const body = JSON.stringify(booking);
     let url: string = this.baseUrl.concat('/booking')
     return this.http.post<any>(url, body, { 'headers': headers })
-     /*  .subscribe({
-        next: data => {          
-          this.router.navigate(['/user/history'])
-        },
-        error: error => {
-          console.error('There was an error!', error);
-        }
-      }) */
+    /*  .subscribe({
+       next: data => {          
+         this.router.navigate(['/user/history'])
+       },
+       error: error => {
+         console.error('There was an error!', error);
+       }
+     }) */
   }
 
   cancelTicket(bookingId: string) {
@@ -67,14 +67,14 @@ export class BookingService {
   }
 
   deleteTicket(booking: Booking) {
-    let url: string = this.baseUrl.concat('/booking')    
-    const body = JSON.stringify(booking);   
+    let url: string = this.baseUrl.concat('/booking')
+    const body = JSON.stringify(booking);
     //console.log(body) 
     const options = {
-      headers : new HttpHeaders({
+      headers: new HttpHeaders({
         'content-type': 'application/json'
       }),
-      body:body
+      body: body
     }
     this.http.delete<any>(url, options)
       .subscribe({
@@ -91,6 +91,13 @@ export class BookingService {
 
 
   downloadTicket(bookingId: string) {
+    /*  const httpOptions = {
+       responseType: 'blob' as 'json'
+     }; */
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get<any>(this.baseUrl.concat('/downloadTicket/').concat(bookingId), { headers: headers, responseType: 'blob' as 'json' });
 
   }
 

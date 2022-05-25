@@ -118,6 +118,8 @@
       <h3>Ticket Booking</h3>
     </div>
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+      <input type="hidden" formControlName="flightNumber" id="flightNumber">
+      <input type="hidden" formControlName="flightType" id="flightType">
       <div
         class="flex align-items-center justify-content-center h-3rem font-bold border-round m-2 pb-5"
       >

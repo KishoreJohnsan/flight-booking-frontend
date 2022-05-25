@@ -35,7 +35,9 @@ export class BookTicketComponent implements OnInit {
       mealPreference: ['veg', Validators.required],
       seats: ['1', Validators.required],
       fare: ['', Validators.required],
-      user: ['']
+      user: [''],
+      flightNumber:[''],
+      flightType:['']
     });
   }
 
@@ -71,6 +73,8 @@ export class BookTicketComponent implements OnInit {
           source: schedule.source,
           destination: schedule.destination,
           fare: schedule.fare,
+          flightType:schedule.flightType,
+          flightNumber:schedule.flightNumber,
         })
         this.fare = schedule.fare
 
