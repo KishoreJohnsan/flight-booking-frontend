@@ -6,13 +6,15 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { LoginService } from './login.service';
+import * as dayjs from 'dayjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   handleError(error: HttpErrorResponse) {
 
@@ -32,11 +34,14 @@ export class InterceptorService implements HttpInterceptor {
     if (data) {
       const parsedData = JSON.parse(data);
       //console.log(parsedData.token)
-      req = req.clone({
-        setHeaders: {
-          Authorization: "Bearer " + parsedData.token
-        }
-      })
+      if (!(dayjs().isAfter(dayjs(parsedData.expiry)))) {
+
+        req = req.clone({
+          setHeaders: {
+            Authorization: "Bearer " + parsedData.token
+          }
+        })
+      }
     }
     return next.handle(req)
       .pipe(
